@@ -72,15 +72,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Order_Details`;
 CREATE TABLE `Order_Details` (
-  `order_detailid` int NOT NULL,
-  `order_id` int DEFAULT NULL,
-  `book_id` int DEFAULT NULL,
-  `quantity` double DEFAULT NULL,
-  PRIMARY KEY (`order_detailid`),
-  KEY `order_id` (`order_id`),
-  KEY `book_id` (`book_id`),
-  CONSTRAINT `Order_Details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`),
-  CONSTRAINT `Order_Details_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`)
+  order_detailid INT NOT NULL,
+  order_id INT DEFAULT NULL,
+  book_id INT DEFAULT NULL,
+  quantity DOUBLE DEFAULT NULL,
+  PRIMARY KEY (order_detailid),
+  KEY order_id (order_id),
+  KEY book_id (book_id),
+  CONSTRAINT `Order_Details_ibfk_1` FOREIGN KEY (order_id) REFERENCES `Orders` (order_id),
+  CONSTRAINT `Order_Details_ibfk_2` FOREIGN KEY (book_id) REFERENCES `Books` (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -95,14 +95,14 @@ UNLOCK TABLES;
 -- Table structure for table `Orders`
 --
 
-DROP TABLE IF EXISTS `Orders`;
-CREATE TABLE `Orders` (
-  `order_id` int NOT NULL,
-  `customer_id` int DEFAULT NULL,
-  `order_date` date DEFAULT NULL,
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE Orders (
+  order_id INT NOT NULL,
+  customer_id INT DEFAULT NULL,
+  order_date DATE DEFAULT NULL,
   PRIMARY KEY (`order_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`customer_id`)
+  KEY customer_id (customer_id),
+  CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (customer_id) REFERENCES `Customers` (customer_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
