@@ -97,14 +97,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
-  order_id INT NOT NULL,
-  customer_id INT DEFAULT NULL,
-  order_date DATE DEFAULT NULL,
-  PRIMARY KEY (order_id),
-  KEY customer_id (customer_id),
-  CONSTRAINT FOREIGN KEY (customer_id) REFERENCES  Customers (customer_id),
+    order_id INT NOT NULL,
+    customer_id INT DEFAULT NULL,
+    order_date DATE DEFAULT NULL,
+    PRIMARY KEY (order_id),
+    KEY customer_id (customer_id),
+    CONSTRAINT FK_CustomerOrder FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Dumping data for table `Orders`
 --
