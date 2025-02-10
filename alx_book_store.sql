@@ -49,11 +49,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `Customers`;
 
 CREATE TABLE `Customers` (
-  `customer_id` int NOT NULL,
-  `customer_name` varchar(215) NOT NULL,
-  `email` varchar(215) DEFAULT NULL,
-  `address` text,
-  PRIMARY KEY (`customer_id`),
+  customer_id int NOT NULL,
+  customer_name VARCHAR(215) NOT NULL,
+  email VARCHAR(215) DEFAULT NULL,
+  address TEXT,
+  PRIMARY KEY (customer_id),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
