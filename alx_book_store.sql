@@ -5,15 +5,15 @@ USE DATABASE alx_book_store;
 -- Table structure for table `Authors`
 --
 
-DROP TABLE IF EXISTS `Authors`;
-CREATE TABLE `Authors` (
-  `author_id` int NOT NULL,
-  `author_name` varchar(215) NOT NULL,
-  PRIMARY KEY (`author_id`)
+DROP TABLE IF EXISTS Authors;
+CREATE TABLE Authors (
+  author_id int NOT NULL,
+  author_name varchar(215) NOT NULL,
+  PRIMARY KEY (author_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-LOCK TABLES `Authors` WRITE;
+LOCK TABLES Authors WRITE;
 /*!40000 ALTER TABLE `Authors` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Authors` ENABLE KEYS */;
 UNLOCK TABLES;
