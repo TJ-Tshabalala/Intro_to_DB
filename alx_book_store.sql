@@ -87,10 +87,7 @@ CREATE TABLE Orders (
 LOCK TABLES `Orders` WRITE;
 UNLOCK TABLES;
 
---
--- Table structure for table `Order_Details`
---
-
+-- Order_Details table (create last, references Orders and Books)
 DROP TABLE IF EXISTS `Order_Details`;
 CREATE TABLE `Order_Details` (
     order_detailid INT NOT NULL,
@@ -103,11 +100,3 @@ CREATE TABLE `Order_Details` (
     CONSTRAINT FK_OrderDetailOrder FOREIGN KEY (order_id) REFERENCES `Orders` (order_id),
     CONSTRAINT FK_OrderDetailBook FOREIGN KEY (book_id) REFERENCES `Books` (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
---
--- Dumping data for table `Order_Details`
---
-
-LOCK TABLES `Order_Details` WRITE;
-UNLOCK TABLES;
