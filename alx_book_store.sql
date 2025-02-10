@@ -97,6 +97,6 @@ CREATE TABLE `Order_Details` (
     PRIMARY KEY (order_detailid),
     KEY order_id (order_id),
     KEY book_id (book_id),
-    CONSTRAINT FK_OrderDetailOrder FOREIGN KEY (order_id) REFERENCES `Orders` (order_id),
-    CONSTRAINT FK_OrderDetailBook FOREIGN KEY (book_id) REFERENCES `Books` (book_id)
+    CONSTRAINT FK_OrderDetailOrder FOREIGN KEY (order_id) REFERENCES Orders (order_id),
+    CONSTRAINT FK_OrderDetailBook FOREIGN KEY (book_id) REFERENCES Books (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
