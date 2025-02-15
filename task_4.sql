@@ -1,2 +1,6 @@
 USE alx_book_store;
-SELECT * Books;
+INFORMATION_SCHEMA.COLUMNS,
+COLUMN.NAME,
+COLUMN.TYPE,
+TABLE_SCHEMA = 'alx_book_store',
+TABLE_NAME = Books;
