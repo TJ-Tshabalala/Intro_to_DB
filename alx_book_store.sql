@@ -1,20 +1,19 @@
-CREATE DATABASE IF NOT EXISTS `alx_book_store`;
+CREATE DATABASE IF NOT EXISTS alx_book_store;
 
-USE `alx_book_store`;
-
+USE DATABASE alx_book_store;
 --
 -- Table structure for table `Authors`
 --
 
-DROP TABLE IF EXISTS `Authors`;
-CREATE TABLE `Authors` (
-  `author_id` int NOT NULL,
-  `author_name` varchar(215) NOT NULL,
-  PRIMARY KEY (`author_id`)
+DROP TABLE IF EXISTS Authors;
+CREATE TABLE Authors (
+  author_id int NOT NULL,
+  author_name varchar(215) NOT NULL,
+  PRIMARY KEY (author_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-LOCK TABLES `Authors` WRITE;
+LOCK TABLES Authors WRITE;
 /*!40000 ALTER TABLE `Authors` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Authors` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -50,11 +49,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `Customers`;
 
 CREATE TABLE `Customers` (
-  `customer_id` int NOT NULL,
-  `customer_name` varchar(215) NOT NULL,
-  `email` varchar(215) DEFAULT NULL,
-  `address` text,
-  PRIMARY KEY (`customer_id`),
+  customer_id int NOT NULL,
+  customer_name VARCHAR(215) NOT NULL,
+  email VARCHAR(215) DEFAULT NULL,
+  address TEXT,
+  PRIMARY KEY (customer_id),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -67,48 +66,37 @@ LOCK TABLES `Customers` WRITE;
 
 UNLOCK TABLES;
 
---
--- Table structure for table `Order_Details`
---
-
-DROP TABLE IF EXISTS `Order_Details`;
-CREATE TABLE `Order_Details` (
-  `order_detailid` int NOT NULL,
-  `order_id` int DEFAULT NULL,
-  `book_id` int DEFAULT NULL,
-  `quantity` double DEFAULT NULL,
-  PRIMARY KEY (`order_detailid`),
-  KEY `order_id` (`order_id`),
-  KEY `book_id` (`book_id`),
-  CONSTRAINT `Order_Details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`),
-  CONSTRAINT `Order_Details_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
---
--- Dumping data for table `Order_Details`
---
-
-LOCK TABLES `Order_Details` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Orders`
 --
 
-DROP TABLE IF EXISTS `Orders`;
-CREATE TABLE `Orders` (
-  `order_id` int NOT NULL,
-  `customer_id` int DEFAULT NULL,
-  `order_date` date DEFAULT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`customer_id`)
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE Orders (
+    order_id INT NOT NULL,
+    customer_id INT DEFAULT NULL,
+    order_date DATE DEFAULT NULL,
+    PRIMARY KEY (order_id),
+    KEY customer_id (customer_id),
+    CONSTRAINT FK_CustomerOrder FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Dumping data for table `Orders`
 --
 
 LOCK TABLES `Orders` WRITE;
 UNLOCK TABLES;
+
+-- Order_Details table (create last, references Orders and Books)
+DROP TABLE IF EXISTS `Order_Details`;
+CREATE TABLE `Order_Details` (
+    order_detailid INT NOT NULL,
+    order_id INT DEFAULT NULL,
+    book_id INT DEFAULT NULL,
+    quantity DOUBLE DEFAULT NULL,
+    PRIMARY KEY (order_detailid),
+    KEY order_id (order_id),
+    KEY book_id (book_id),
+    CONSTRAINT OrderDetail_FK FOREIGN KEY (order_id) REFERENCES Orders (order_id),
+    CONSTRAINT BookOrder_FK FOREIGN KEY (book_id) REFERENCES Books (book_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
